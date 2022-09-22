@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactStars from 'react-rating-stars-component';
-import AddToCart from './components/AddToCart';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchProducts } from './store/sliceProducts';
+import OpenDetails from './components/OpenDetails';
+import ProductDetail from './components/ProductDetail';
 
 function App() {
   const dispatch = useDispatch();
-  const { allProducts, loading } = useSelector((state) => state.allProducts);
+  const { allProducts, loading, openDetails } = useSelector(
+    (state) => state.products,
+  );
 
   React.useEffect(() => {
     dispatch(fetchProducts());
@@ -15,6 +18,8 @@ function App() {
 
   return (
     <main className="container py-10">
+      {openDetails && <ProductDetail />}
+
       {loading ? (
         <h1 className="text-2xl">Loading...</h1>
       ) : (
@@ -22,7 +27,7 @@ function App() {
           {allProducts.map((product) => (
             <div
               key={product.id}
-              className="flex flex-col xs:flex-row gap-5 bg-white p-2 rounded-md"
+              className="flex flex-col xs:flex-row gap-5 bg-white p-2 rounded-md shadow-lg"
             >
               <img src={product.image} alt={product.title} className="w-40" />
               <ul className="flex flex-col">
@@ -41,10 +46,9 @@ function App() {
                     isHalf={true}
                     activeColor="#FDE047"
                   />
-                  ({product.rating.count})
                 </li>
                 <li className="mt-auto mb-2">
-                  <AddToCart id={product.id} />
+                  <OpenDetails id={product.id} />
                 </li>
               </ul>
             </div>

@@ -2,11 +2,13 @@ import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 export const slice = createSlice({
-  name: 'getAllProducts',
+  name: 'products',
   initialState: {
     loading: false,
     allProducts: [],
     error: null,
+    productDetail: [],
+    openDetails: false,
   },
   reducers: {
     fetchStarted(state) {
@@ -22,10 +24,22 @@ export const slice = createSlice({
       state.allProducts = [];
       state.error = action.payload;
     },
+    getProductDetail(state, action) {
+      state.productDetail = action.payload;
+    },
+    openProductDetails(state, action) {
+      state.openDetails = action.payload;
+    },
   },
 });
 
-export const { fetchStarted, fetchSuccess, fetchError } = slice.actions;
+export const {
+  fetchStarted,
+  fetchSuccess,
+  fetchError,
+  getProductDetail,
+  openProductDetails,
+} = slice.actions;
 
 export const fetchProducts = () => async (dispatch) => {
   try {
