@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { openProductDetails } from '../store/sliceProducts';
 import ReactStars from 'react-rating-stars-component';
+import AddToCart from './AddToCart';
 
 function ProductDetail() {
   const dispatch = useDispatch();
@@ -33,12 +34,6 @@ function ProductDetail() {
             <div class="bg-white px-4 pt-5 pb-4 sm:p-6">
               <div class="sm:flex sm:items-start">
                 <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                  <h3
-                    class="text-lg font-medium leading-6 text-gray-900"
-                    id="modal-title"
-                  >
-                    Product Details
-                  </h3>
                   <div class="mt-2">
                     <div className="grid place-items-center">
                       <img
@@ -47,7 +42,7 @@ function ProductDetail() {
                         className="w-32"
                       />
                     </div>
-                    <ul className="mt-5">
+                    <ul className="mt-5 text-center">
                       <li className="text-xl font-bold">
                         {productDetail[0].title} -{' '}
                         {productDetail[0].price.toLocaleString('en-us', {
@@ -55,7 +50,7 @@ function ProductDetail() {
                           currency: 'USD',
                         })}
                       </li>
-                      <li className="flex items-center gap-2">
+                      <li className="flex items-center justify-center">
                         <ReactStars
                           size={30}
                           edit={false}
@@ -71,18 +66,10 @@ function ProductDetail() {
                 </div>
               </div>
             </div>
-            <div class="bg-gray-50 px-4 py-3 space-y-2 sm:flex sm:flex-row-reverse sm:px-6 sm:space-y-0">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 px-10 py-4">
+              <AddToCart id={productDetail[0].id} />
               <button
-                type="button"
-                class="inline-flex w-full justify-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"
-                data-id={productDetail[0].id}
-                onClick={addToCart}
-              >
-                Add to cart
-              </button>
-              <button
-                type="button"
-                class="inline-flex w-full justify-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"
+                className="bg-red-500 hover:bg-red-600 active:bg-red-400 text-white px-2 py-1 rounded-md"
                 data-close={true}
               >
                 Close

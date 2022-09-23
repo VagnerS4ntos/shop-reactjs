@@ -45,6 +45,7 @@ export const fetchProducts = () => async (dispatch) => {
   try {
     dispatch(fetchStarted());
     const { data } = await axios.get('https://fakestoreapi.com/products');
+    data.map((product) => (product.cartQuantity = 0));
 
     return dispatch(fetchSuccess(data));
   } catch (error) {

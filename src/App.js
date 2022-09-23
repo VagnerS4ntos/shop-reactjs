@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchProducts } from './store/sliceProducts';
 import OpenDetails from './components/OpenDetails';
 import ProductDetail from './components/ProductDetail';
+import AddToCart from './components/AddToCart';
 
 function App() {
   const dispatch = useDispatch();
@@ -17,23 +18,25 @@ function App() {
   }, []);
 
   return (
-    <main className="container py-10">
+    <main className="container pb-10 pt-32">
       {openDetails && <ProductDetail />}
 
       {loading ? (
         <h1 className="text-2xl">Loading...</h1>
       ) : (
         <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
-          {allProducts.map((product) => (
+          {allProducts.map(({ id, image, title, price, rating }) => (
             <div
-              key={product.id}
+              key={id}
               className="flex flex-col xs:flex-row gap-5 bg-white p-2 rounded-md shadow-lg"
             >
-              <img src={product.image} alt={product.title} className="w-40" />
-              <ul className="flex flex-col">
-                <li className="font-bold">{product.title}</li>
+              <div className="flex items-center justify-center">
+                <img src={image} alt={title} className="w-40" />
+              </div>
+              <ul className="flex flex-col w-full items-center xs:items-start">
+                <li className="font-bold">{title}</li>
                 <li className="text-xl">
-                  {product.price.toLocaleString('en-us', {
+                  {price.toLocaleString('en-us', {
                     style: 'currency',
                     currency: 'USD',
                   })}
@@ -42,13 +45,14 @@ function App() {
                   <ReactStars
                     size={30}
                     edit={false}
-                    value={product.rating.rate}
+                    value={rating.rate}
                     isHalf={true}
                     activeColor="#FDE047"
                   />
                 </li>
-                <li className="mt-auto mb-2">
-                  <OpenDetails id={product.id} />
+                <li className="mt-auto mb-2 grid grid-cols-1 lg:grid-cols-2 gap-2 w-full">
+                  <OpenDetails id={id} />
+                  <AddToCart id={id} />
                 </li>
               </ul>
             </div>
