@@ -8,11 +8,7 @@ function ProductDetail() {
   const dispatch = useDispatch();
   const { productDetail } = useSelector((state) => state.products);
 
-  function addToCart({ target }) {
-    console.log(target.dataset.id);
-  }
-
-  function teste({ target }) {
+  function details({ target }) {
     if (target.dataset.close === 'true') {
       dispatch(openProductDetails(false));
     }
@@ -23,7 +19,7 @@ function ProductDetail() {
       <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
       <div
         class="fixed inset-0 z-10 overflow-y-auto"
-        onClick={teste}
+        onClick={details}
         data-close={10}
       >
         <div

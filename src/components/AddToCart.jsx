@@ -6,6 +6,7 @@ function AddToCart({ id }) {
   const { cart } = useSelector((state) => state.cart);
   const { allProducts } = useSelector((state) => state.products);
   const dispatch = useDispatch();
+  const { pathname } = window.location;
 
   function addProductToCart({ target }) {
     const currentCart = cart.map((product) => Object.assign({}, product));
@@ -38,13 +39,25 @@ function AddToCart({ id }) {
   }
 
   return (
-    <button
-      className="bg-green-500 hover:bg-green-600 active:bg-green-400 text-white px-2 py-1 rounded-md"
-      data-id={id}
-      onClick={addProductToCart}
-    >
-      Add to cart
-    </button>
+    <>
+      {pathname === '/cart' ? (
+        <button
+          className="bg-green-400 hover:bg-green-500 active:bg-green-300 w-6"
+          data-id={id}
+          onClick={addProductToCart}
+        >
+          +
+        </button>
+      ) : (
+        <button
+          className="bg-green-500 hover:bg-green-600 active:bg-green-400 text-white px-2 py-1 rounded-md"
+          data-id={id}
+          onClick={addProductToCart}
+        >
+          Add to cart
+        </button>
+      )}
+    </>
   );
 }
 
