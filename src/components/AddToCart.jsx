@@ -42,7 +42,7 @@ function AddToCart({ id }) {
     <>
       {pathname === '/cart' ? (
         <button
-          className="bg-green-400 hover:bg-green-500 active:bg-green-300 w-6"
+          className="bg-gray-400 hover:bg-gray-500 active:bg-gray-300 w-6"
           data-id={id}
           onClick={addProductToCart}
         >
@@ -50,7 +50,7 @@ function AddToCart({ id }) {
         </button>
       ) : (
         <button
-          className="bg-green-500 hover:bg-green-600 active:bg-green-400 text-white px-2 py-1 rounded-md"
+          className="bg-green-500 hover:bg-green-600 active:bg-green-400 text-white px-2 py-1 rounded-md w-full"
           data-id={id}
           onClick={addProductToCart}
         >

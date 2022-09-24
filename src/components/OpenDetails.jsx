@@ -16,7 +16,7 @@ function Details({ id }) {
 
   return (
     <button
-      className="bg-blue-500 hover:bg-blue-600 active:bg-blue-400 text-white px-2 py-1 rounded-md"
+      className="bg-blue-400 hover:bg-blue-500 text-white px-2 py-1 rounded-md w-full"
       data-id={id}
       onClick={openProductDetail}
     >

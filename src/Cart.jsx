@@ -12,27 +12,43 @@ function Cart() {
   }, 0);
 
   return (
-    <main className="container pb-10 pt-32 sm:flex gap-10">
+    <main className="container pb-10 pt-32 gap-10">
       {cart.length !== 0 ? (
         <>
-          <div className="space-y-5">
+          <div className="bg-gray-200 p-4 rounded-md shadow-md mt-5 sm:mt-0 h-fit mb-5">
+            <p className=" text-xl text-red-600 font-bold uppercase ">
+              Total:{' '}
+              {total.toLocaleString('en-us', {
+                style: 'currency',
+                currency: 'USD',
+              })}
+            </p>
+            <Link
+              to="/checkout"
+              className="bg-blue-500 px-2 py-1 text-white rounded-md mt-2 inline-block"
+            >
+              Checkout
+            </Link>
+          </div>
+          <div className="space-y-5 text-center xs:text-left">
             {cart.map((product) => (
-              <div className="bg-white p-4 flex flex-col xs:flex-row gap-4 rounded-md shadow-md max-w-screen-md">
+              <div className="bg-white p-4 flex flex-col items-center xs:items-start xs:flex-row gap-6 rounded-md shadow-md">
                 <img src={product.image} alt={product.title} className="w-32" />
                 <ul className="flex flex-col">
                   <li className="font-semibold text-md md:text-xl">
                     {product.title}
                   </li>
                   <li className="font-semibold text-ld md:text-xl">
-                    Quantity: {product.cartQuantity}
+                    Price:{' '}
+                    {product.price.toLocaleString('en-us', {
+                      style: 'currency',
+                      currency: 'USD',
+                    })}
                   </li>
-                  <li className="my-2">
+                  <li className="my-2 flex justify-center xs:justify-start">
                     <AddToCart id={product.id} />
-                    <span className="bg-gray-300 px-1 h-6 inline-block font-semibold">
-                      {product.price.toLocaleString('en-us', {
-                        style: 'currency',
-                        currency: 'USD',
-                      })}
+                    <span className="bg-gray-300 px-2 h-6 inline-block font-semibold">
+                      {product.cartQuantity}
                     </span>
                     <RemoveFromCart id={product.id} />
                   </li>
@@ -54,13 +70,6 @@ function Cart() {
                 </ul>
               </div>
             ))}
-          </div>
-          <div className="bg-gray-200 p-4 rounded-md shadow-md mt-5 sm:mt-0 h-fit text-xl text-red-600 font-bold uppercase">
-            Total:{' '}
-            {total.toLocaleString('en-us', {
-              style: 'currency',
-              currency: 'USD',
-            })}
           </div>
         </>
       ) : (

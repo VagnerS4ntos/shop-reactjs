@@ -25,7 +25,7 @@ function RemoveFromCart({ id }) {
     <>
       {pathname === '/cart' ? (
         <button
-          className="bg-red-400 hover:bg-red-500 active:bg-red-300 w-6 text-white font-bold"
+          className="bg-gray-400 hover:bg-gray-500 active:bg-gray-300 w-6 font-bold"
           data-id={id}
           onClick={addProductToCart}
         >

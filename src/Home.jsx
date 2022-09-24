@@ -34,14 +34,14 @@ function Home() {
                 <img src={image} alt={title} className="w-40" />
               </div>
               <ul className="flex flex-col w-full items-center xs:items-start">
-                <li className="font-bold">{title}</li>
+                <li className="font-bold text-center xs:text-left">{title}</li>
                 <li className="text-xl">
                   {price.toLocaleString('en-us', {
                     style: 'currency',
                     currency: 'USD',
                   })}
                 </li>
-                <li className="flex items-center gap-2">
+                <li className="flex items-center gap-2 mb-2">
                   <ReactStars
                     size={30}
                     edit={false}
@@ -50,7 +50,7 @@ function Home() {
                     activeColor="#FDE047"
                   />
                 </li>
-                <li className="mt-auto mb-2 grid grid-cols-1 lg:grid-cols-2 gap-2 w-full">
+                <li className="mt-auto mb-2 text-center xs:text-left w-3/4 space-y-2">
                   <OpenDetails id={id} />
                   <AddToCart id={id} />
                 </li>
